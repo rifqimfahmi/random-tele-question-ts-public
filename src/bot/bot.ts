@@ -8,7 +8,7 @@ export const bot = new Bot(config.telegramBotToken)
 bot.use(ignoreOldMessageUpdates)
 
 bot.api.setMyCommands([
-        {command: "question", description: "Ask a question"}
+        {command: "question", description: "Get a random question"}
     ]
 )
 

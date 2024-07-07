@@ -16,12 +16,15 @@
     "get_webhook_info": "yarn build && node dist/utility/getWebhookInfo.js"
   },
   "dependencies": {
+    "@typegoose/typegoose": "^12.5.0",
     "axios": "^1.7.2",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "grammy": "^1.26.1",
     "module-alias": "^2.2.3",
     "mongoose": "^8.4.5",
+    "mongoose-findorcreate": "^4.0.0",
+    "node-cache": "^5.1.2",
     "uuid": "^10.0.0"
   },
   "_moduleAliases": {
