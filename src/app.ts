@@ -4,12 +4,21 @@ import { v4 as uuidv4 } from 'uuid';
 require('module-alias/register')
 import {config} from "@/config/config";
 import {bot} from "@/bot/bot";
+import startMongo from "@/helpers/startMongo";
 
-const app = express();
-const secretWebhookPath = uuidv4();
-app.use(express.json());
-app.use(`/${secretWebhookPath}`, webhookCallback(bot, "express"));
-app.listen(config.webhookPort, async () => {
-    await bot.api.setWebhook(`${config.domain}/${secretWebhookPath}`);
-    console.log(`Bot webhook is up and running`);
-});
+
+async function runApp() {
+    const app = express();
+    const secretWebhookPath = uuidv4();
+
+    await startMongo()
+
+    app.use(express.json());
+    app.use(`/${secretWebhookPath}`, webhookCallback(bot, "express"));
+    app.listen(config.webhookPort, async () => {
+        await bot.api.setWebhook(`${config.domain}/${secretWebhookPath}`);
+        console.log(`Bot webhook is up and running`);
+    });
+}
+
+runApp()
