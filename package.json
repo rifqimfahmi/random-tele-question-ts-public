@@ -4,11 +4,22 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.21",
+    "@types/uuid": "^10.0.0",
     "typescript": "^5.5.3"
   },
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "dev": "yarn build && yarn start"
+    "dev": "yarn build && yarn start",
+    "get_webhook_info": "yarn build && node dist/utility/get_webhook_info.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "grammy": "^1.26.1",
+    "uuid": "^10.0.0"
   }
 }
