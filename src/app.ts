@@ -1,8 +1,9 @@
 import express from "express";
 import {webhookCallback} from "grammy";
-import {config} from "./config/config";
-import {bot} from "./bot/bot";
 import { v4 as uuidv4 } from 'uuid';
+require('module-alias/register')
+import {config} from "@/config/config";
+import {bot} from "@/bot/bot";
 
 const app = express();
 const secretWebhookPath = uuidv4();

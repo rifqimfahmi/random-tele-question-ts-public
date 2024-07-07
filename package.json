@@ -11,15 +11,19 @@
   },
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js",
+    "start": "node dist/app.js",
     "dev": "yarn build && yarn start",
-    "get_webhook_info": "yarn build && node dist/utility/get_webhook_info.js"
+    "get_webhook_info": "yarn build && node dist/utility/getWebhookInfo.js"
   },
   "dependencies": {
     "axios": "^1.7.2",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "grammy": "^1.26.1",
+    "module-alias": "^2.2.3",
     "uuid": "^10.0.0"
+  },
+  "_moduleAliases": {
+    "@": "dist"
   }
 }
