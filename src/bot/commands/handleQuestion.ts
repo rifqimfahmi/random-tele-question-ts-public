@@ -27,7 +27,9 @@ export default async function handleQuestion (
     if (!randomQuestion) {
         console.log(`No more questions left: ${ctx.chat?.id} - ${ctx.chat?.title}`)
         await QuestionHistoryModel.deleteMany({chatId: ctx.chat?.id})
-        handleQuestion(ctx) // try again
+        if (questions.length !== 0) {
+            handleQuestion(ctx) // try again
+        }
         return
     }
     const nextQuestionMarkup = new InlineKeyboard()
