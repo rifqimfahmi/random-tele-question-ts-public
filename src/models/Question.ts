@@ -2,10 +2,10 @@ import {getModelForClass, modelOptions, plugin, prop} from "@typegoose/typegoose
 import {FindOrCreate} from "@/helpers/mongoFindOrCreate";
 import mongoose from "mongoose";
 
-@modelOptions({ schemaOptions: { timestamps: true } })
-export class Question extends FindOrCreate{
+@modelOptions({ schemaOptions: { collection: 'questions' } })
+export class Question extends FindOrCreate {
     @prop()
-    _id!: mongoose.Types.ObjectId
+    _id!: string
     @prop()
     text?: string
 }
