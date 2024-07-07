@@ -1,0 +1,14 @@
+{
+  "name": "random-tele-question-ts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.5.3"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "yarn build && yarn start"
+  }
+}
