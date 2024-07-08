@@ -40,6 +40,6 @@ export default async function handleQuestion (
     await QuestionHistoryModel.create({
         questionId: randomQuestion._id,
         chatId: ctx.chat?.id,
-        chatTitle: ctx.chat?.title
+        chatTitle: ctx.chat?.title || ctx.chat?.first_name
     })
 }
