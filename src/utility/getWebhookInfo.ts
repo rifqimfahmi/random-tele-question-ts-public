@@ -1,15 +1,16 @@
 import axios from "axios";
 require('module-alias/register')
 import {config} from "@/config/config";
+import {logger} from "@/logger";
 
 async function getWebhookInfo() {
     try {
         const url = `https://api.telegram.org/bot${config.telegramBotToken}/getWebhookInfo`
         const webhookInfo = await axios.get(url)
-        console.log(webhookInfo.data)
+        logger.info(webhookInfo.data)
         return webhookInfo.data
     } catch (error) {
-        console.error(error)
+        logger.error(error)
     }
 }
 

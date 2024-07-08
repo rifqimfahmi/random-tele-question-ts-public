@@ -5,6 +5,7 @@ require('module-alias/register')
 import {config} from "@/config/config";
 import {bot} from "@/bot/bot";
 import startMongo from "@/helpers/startMongo";
+import {logger} from "@/logger";
 
 
 async function runApp() {
@@ -17,7 +18,7 @@ async function runApp() {
     app.use(`/${secretWebhookPath}`, webhookCallback(bot, "express"));
     app.listen(config.webhookPort, async () => {
         await bot.api.setWebhook(`${config.domain}/${secretWebhookPath}`);
-        console.log(`Bot webhook is up and running`);
+        logger.info(`Bot webhook is up and running`);
     });
 }
 

@@ -1,4 +1,5 @@
 import {Context, NextFunction} from "grammy";
+import {logger} from "@/logger";
 
 /**
  * Middleware to ignore old message updates based on a predefined threshold.
@@ -20,7 +21,7 @@ export function ignoreOldMessageUpdates(
         if (timeDiff < threshold) {
             return next();
         } else {
-            console.log(
+            logger.info(
                 `Ignoring message from ${ctx.from?.id} at ${ctx.chat?.id} (${
                     Math.trunc(new Date().getTime() / 1000)
                 }:${ctx.message.date})`
