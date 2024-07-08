@@ -1,5 +1,6 @@
 import axios from "axios";
-import {config} from "../config/config";
+require('module-alias/register')
+import {config} from "@/config/config";
 
 async function getWebhookInfo() {
     try {
