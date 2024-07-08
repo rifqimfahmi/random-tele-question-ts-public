@@ -1,7 +1,8 @@
 import { connect } from 'mongoose'
 import {config} from "@/config/config";
+import {logger} from "@/logger";
 
 export default async function () {
     await connect(config.mongoUri)
-    console.log("Connected to database")
+    logger.info("Connected to database")
 }

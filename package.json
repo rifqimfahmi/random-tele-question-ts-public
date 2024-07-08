@@ -13,10 +13,12 @@
     "build": "tsc",
     "start": "node dist/app.js",
     "dev": "yarn build && yarn start",
+    "clean": "rm -rf dist",
     "get_webhook_info": "yarn build && node dist/utility/getWebhookInfo.js",
     "populate_questions": "yarn build && node dist/utility/question-banks/questionPopulator.js"
   },
   "dependencies": {
+    "@grammyjs/menu": "^1.2.2",
     "@typegoose/typegoose": "^12.5.0",
     "axios": "^1.7.2",
     "crypto": "^1.0.1",
