@@ -5,7 +5,7 @@ import {getRandomElement} from "@/helpers/getRandomElement";
 import {QuestionHistory, QuestionHistoryModel} from "@/models/QuestionHistory";
 import {nextQuestionMenu} from "@/menu/questionMenu";
 import {logger} from "@/logger";
-import {getFirstNameOrTitle} from "@/helpers/chatHelper";
+import {escapeTelegramSpecialCharacters, getFirstNameOrTitle} from "@/helpers/chatHelper";
 import {llm} from "@/helpers/llm";
 import {ChatPromptTemplate} from "@langchain/core/prompts";
 
@@ -21,9 +21,10 @@ async function getQuestionHistories(ctx: Context) {
 async function getLLMAnswer(randomQuestion: Question) {
     const template = ChatPromptTemplate.fromTemplate(
         `
-        You are a funny AI. you'll be given a question and you have to answer it with a witty reply, and include emoji, be playful.
+        You are a funny AI. You will response in markdown format.
+        you'll be given a question and you have to answer it with a witty reply, and include emoji, be playful.  
         you would also add a new line after and come up with an interesting short little fact about the topic in question in this format: "Did you know that...?"
-        for the fun fact, add two underscores at the beginning and end of the sentence to make it italic format.
+        for the fun fact make it italic formatted with underscore at the beginning and the end of the sentence.
         add a new line and at the end, rephrase the question back to the users in the group.      
         
         question: {question}
@@ -58,7 +59,9 @@ export default async function handleQuestion(
         reply_markup: nextQuestionMenu
     })
     const llmAnswer = await getLLMAnswer(randomQuestion);
-    await ctx.reply(llmAnswer)
+    await ctx.reply(escapeTelegramSpecialCharacters(llmAnswer), {
+        parse_mode: "MarkdownV2"
+    })
     await QuestionHistoryModel.create({
         questionId: randomQuestion._id,
         chatId: ctx.chat?.id,
