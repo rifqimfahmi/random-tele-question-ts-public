@@ -22,7 +22,9 @@ async function getLLMAnswer(randomQuestion: Question) {
     const template = ChatPromptTemplate.fromTemplate(
         `
         You are a funny AI. you'll be given a question and you have to answer it with a witty reply, and include emoji, be playful.
-        at the end rephrase the question back to the users in the group.
+        you would also add a new line after and come up with an interesting short little fact about the topic in question in this format: "Did you know that...?"
+        for the fun fact, add two underscores at the beginning and end of the sentence to make it italic format.
+        add a new line and at the end, rephrase the question back to the users in the group.      
         
         question: {question}
         `

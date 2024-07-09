@@ -1,5 +1,5 @@
 import {Menu} from "@grammyjs/menu";
-import handleQuestion from "@/bot/commands/handleQuestion";
+import handleQuestion from "@/bot/handlers/handleQuestion";
 import {logger} from "@/logger";
 import {Context} from "grammy";
 import {getFirstNameOrTitle} from "@/helpers/chatHelper";
