@@ -5,6 +5,7 @@ import {getRandomElement} from "@/helpers/getRandomElement";
 import {QuestionHistory, QuestionHistoryModel} from "@/models/QuestionHistory";
 import {nextQuestionMenu} from "@/menu/questionMenu";
 import {logger} from "@/logger";
+import {getFirstNameOrTitle} from "@/helpers/chatHelper";
 
 const ttl = 5 * 60 // 5 minutes
 const questionCache = new MemCache<Array<Question>>(ttl)
@@ -39,6 +40,6 @@ export default async function handleQuestion(
     await QuestionHistoryModel.create({
         questionId: randomQuestion._id,
         chatId: ctx.chat?.id,
-        chatTitle: ctx.chat?.title || ctx.chat?.first_name
+        chatTitle: getFirstNameOrTitle(ctx)
     })
 }

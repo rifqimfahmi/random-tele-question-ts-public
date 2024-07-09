@@ -2,6 +2,7 @@ import {Menu} from "@grammyjs/menu";
 import handleQuestion from "@/bot/commands/handleQuestion";
 import {logger} from "@/logger";
 import {Context} from "grammy";
+import {getFirstNameOrTitle} from "@/helpers/chatHelper";
 
 const MENU_NEXT_QUESTION = 'next_question'
 export const nextQuestionMenu = new Menu(MENU_NEXT_QUESTION)
@@ -10,6 +11,7 @@ export const nextQuestionMenu = new Menu(MENU_NEXT_QUESTION)
 // Helper function to handle the next question menu action
 async function handleNextQuestion(ctx: Context) {
     try {
+        logger.info(`Next question clicked: ${ctx.chat?.id} - ${getFirstNameOrTitle(ctx)}`)
         await ctx.editMessageReplyMarkup({ reply_markup: undefined });
         await handleQuestion(ctx)
     } catch (error) {
