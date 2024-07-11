@@ -15,6 +15,7 @@
     "dev": "yarn build && yarn start",
     "clean": "rm -rf dist",
     "get_webhook_info": "yarn build && node dist/utility/getWebhookInfo.js",
+    "get_me": "yarn build && node dist/utility/getMe.js",
     "populate_questions": "yarn build && node dist/utility/question-banks/questionPopulator.js"
   },
   "dependencies": {
