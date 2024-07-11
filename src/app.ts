@@ -16,8 +16,8 @@ async function runApp() {
 
     app.use(express.json());
     app.use(`/${secretWebhookPath}`, webhookCallback(bot, "express"));
-    app.listen(config.webhookPort, async () => {
-        await bot.api.setWebhook(`${config.domain}/${secretWebhookPath}`);
+    app.listen(config.WEBHOOK_PORT, async () => {
+        await bot.api.setWebhook(`${config.DOMAIN}/${secretWebhookPath}`);
         logger.info(`Bot webhook is up and running`);
     });
 }

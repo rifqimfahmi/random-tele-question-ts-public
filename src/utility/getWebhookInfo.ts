@@ -5,7 +5,7 @@ import {logger} from "@/logger";
 
 async function getWebhookInfo() {
     try {
-        const url = `https://api.telegram.org/bot${config.telegramBotToken}/getWebhookInfo`
+        const url = `https://api.telegram.org/bot${config.TELEGRAM_BOT_TOKEN}/getWebhookInfo`
         const webhookInfo = await axios.get(url)
         logger.info(webhookInfo.data)
         return webhookInfo.data

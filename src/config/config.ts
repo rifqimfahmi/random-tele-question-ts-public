@@ -1,47 +1,23 @@
-type Config = {
-    telegramBotToken: string;
-    webhookPort: number;
-    domain: string;
-    mongoUri: string;
-    openAIToken: string;
-};
+import {parseEnv} from "znv";
+import * as process from "node:process";
+import {z} from "zod";
 
 require('dotenv').config();
 
-function getConfig(): Config {
-    const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN
-    const webhookPort = parseInt(process.env.WEBHOOK_PORT || '3000', 10)
-    const domain = process.env.DOMAIN || process.env.RAILWAY_PUBLIC_DOMAIN
-    const mongoUri = process.env.MONGO_URL
-    const openAIToken = process.env.OPENAI_TOKEN
-
-    if (!telegramBotToken) {
-        throw new Error('TELEGRAM_BOT_TOKEN is not defined in your environment variables');
-    }
-
-    if (!webhookPort) {
-        throw new Error('WEBHOOK_PORT is not defined in your environment variables');
-    }
-
-    if (!domain) {
-        throw new Error('DOMAIN is not defined in your environment variables');
-    }
-
-    if (!mongoUri) {
-        throw new Error('MONGO_URL is not defined in your environment variables');
-    }
-
-    if (!openAIToken) {
-        throw new Error('OPENAI_TOKEN is not defined in your environment variables');
-    }
+function getConfig() {
+    const config = parseEnv(process.env, {
+        TELEGRAM_BOT_TOKEN: z.string(),
+        WEBHOOK_PORT: z.number().default(3000),
+        DOMAIN: z.string(),
+        MONGO_URL: z.string(),
+        OPENAI_TOKEN: z.string()
+    })
 
     return {
-        telegramBotToken,
-        webhookPort,
-        domain,
-        mongoUri,
-        openAIToken
-    };
+        ...config
+    }
 }
+
+export type Config = ReturnType<typeof getConfig>;
 
 export const config: Config = getConfig();

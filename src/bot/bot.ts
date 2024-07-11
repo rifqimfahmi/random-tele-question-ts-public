@@ -6,7 +6,7 @@ import {nextQuestionMenu} from "@/menu/questionMenu";
 import {logMessages} from "@/middleware/logMessages";
 import {errorHandler} from "@/bot/handlers/error";
 
-export const bot = new Bot(config.telegramBotToken)
+export const bot = new Bot(config.TELEGRAM_BOT_TOKEN)
 bot.errorBoundary(errorHandler)
 
 bot.use(nextQuestionMenu)
