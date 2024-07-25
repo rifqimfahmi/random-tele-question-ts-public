@@ -61,3 +61,5 @@ build/
 .env
 .env.local
 /mongo
+bfg-*
+..bfg-*
